@@ -1,0 +1,17 @@
+{
+    "name": "jofitz/metatag_link_preview",
+    "description": "Provides a glimpse of an entity's link preview when it is shared on social media",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/jofitz81/metatag_link_preview",
+    "authors": [
+        {
+            "name": "Jo Fitzgerald (jofitz)",
+            "homepage": "https://www.drupal.org/u/jofitz"
+        }
+    ],
+    "require": {
+        "drupal/core": "^10 || ^11",
+        "drupal/metatag": "^2.0"
+    }
+}
