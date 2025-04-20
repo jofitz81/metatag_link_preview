@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace Drupal\metatag_link_preview\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Utility\Token;
 use Drupal\metatag\MetatagManagerInterface;
 use Drupal\metatag_link_preview\LinkPreviewPluginManager;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class MetatagLinkPreviewController extends ControllerBase {
+abstract class MetatagLinkPreviewBaseController extends ControllerBase {
 
   public function __construct(
     private readonly MetatagManagerInterface $metatagManager,
@@ -30,10 +32,10 @@ class MetatagLinkPreviewController extends ControllerBase {
   /**
    * Builds the response.
    */
-  public function __invoke(NodeInterface $node): array {
+  protected function build(ContentEntityInterface $entity): array {
     $preview_cards = [];
 
-    $meta_tags = $this->_getMetaTags($node);
+    $meta_tags = $this->_getMetaTags($entity);
 
     foreach ($this->linkPreviewManager->getDefinitions() as $plugin_id => $definition) {
       $link_preview = $this->linkPreviewManager->createInstance($plugin_id);
@@ -48,17 +50,17 @@ class MetatagLinkPreviewController extends ControllerBase {
     return $build;
   }
 
-  protected function _getMetaTags(NodeInterface $node): array|bool {
-    if (!$this->_hasMetaTagField($node)) {
+  protected function _getMetaTags(ContentEntityInterface $entity): array|bool {
+    if (!$this->_hasMetaTagField($entity)) {
       return FALSE;
     }
 
-    $meta_tags = $this->metatagManager->tagsFromEntityWithDefaults($node);
-    return $this->_replaceTokens($meta_tags, $node);
+    $meta_tags = $this->metatagManager->tagsFromEntityWithDefaults($entity);
+    return $this->_replaceTokens($meta_tags, $entity);
   }
 
-  protected function _hasMetaTagField(NodeInterface $node): bool {
-    foreach ($node->getFieldDefinitions() as $field_definition) {
+  protected function _hasMetaTagField(ContentEntityInterface $entity): bool {
+    foreach ($entity->getFieldDefinitions() as $field_definition) {
       if ($field_definition->getType() === 'metatag') {
         return TRUE;
       }
@@ -66,9 +68,9 @@ class MetatagLinkPreviewController extends ControllerBase {
     return FALSE;
   }
 
-  protected function _replaceTokens(array $meta_tags, NodeInterface $node): array {
+  protected function _replaceTokens(array $meta_tags, ContentEntityInterface $entity): array {
+    $data = [$entity->getEntityTypeId() => $entity];
     foreach ($meta_tags as &$meta_tag) {
-      $data = ['node' => $node];
       $meta_tag = $this->tokenService->replace($meta_tag, $data);
     }
     return $meta_tags;
