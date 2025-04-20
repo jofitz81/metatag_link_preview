@@ -1,0 +1,4 @@
+services:
+  plugin.manager.link_preview:
+    class: Drupal\metatag_link_preview\LinkPreviewPluginManager
+    parent: default_plugin_manager
