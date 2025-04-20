@@ -1,0 +1,5 @@
+metatag_link_preview.preview:
+  title: Link Preview
+  route_name: metatag_link_preview.preview
+  base_route: entity.node.canonical
+  weight: 32
