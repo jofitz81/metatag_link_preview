@@ -1,0 +1,9 @@
+metatag_link_preview.preview:
+  path: '/node/{node}/link-preview'
+  defaults:
+    _title: 'Preview'
+    _controller: '\Drupal\metatag_link_preview\Controller\MetatagLinkPreviewController'
+  requirements:
+    _permission: 'administer meta tags'
+  options:
+    _admin_route: TRUE
