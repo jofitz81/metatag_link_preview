@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function metatag_link_preview_theme($existing, $type, $theme, $path) {
+  return [
+    'preview_container' => [
+      'variables' => [
+        'preview_cards' => NULL,
+      ],
+    ],
+    'search_engine_card' => [
+      'variables' => [
+        'title' => NULL,
+        'link' => NULL,
+        'description' => NULL,
+      ]
+    ]
+  ];
+}
