@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Drupal\metatag_link_preview\Controller;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Utility\Token;
 use Drupal\metatag\MetatagManagerInterface;
+use Drupal\metatag_link_preview\LinkPreviewPluginManager;
 use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -16,12 +16,14 @@ class MetatagLinkPreviewController extends ControllerBase {
   public function __construct(
     private readonly MetatagManagerInterface $metatagManager,
     private readonly Token $tokenService,
+    private readonly LinkPreviewPluginManager $linkPreviewManager,
   ) {}
 
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('metatag.manager'),
       $container->get('token'),
+      $container->get('plugin.manager.link_preview'),
     );
   }
 
@@ -32,19 +34,16 @@ class MetatagLinkPreviewController extends ControllerBase {
     $preview_cards = [];
 
     $meta_tags = $this->_getMetaTags($node);
-    $preview_cards[] = [
-      '#theme' => 'search_engine_card',
-      '#title' => $meta_tags['title'],
-      '#link' => $meta_tags['canonical_url'],
-      '#description' => strip_tags(Html::decodeEntities($meta_tags['description'])),
-    ];
+
+    foreach ($this->linkPreviewManager->getDefinitions() as $plugin_id => $definition) {
+      $link_preview = $this->linkPreviewManager->createInstance($plugin_id);
+      $preview_cards[] = $link_preview->card($meta_tags);
+    }
 
     $build['content'] = [
       '#theme' => 'preview_container',
       '#preview_cards' => $preview_cards,
     ];
-
-    $build['#attached']['library'][] = 'metatag_link_preview/metatag_link_preview';
 
     return $build;
   }
