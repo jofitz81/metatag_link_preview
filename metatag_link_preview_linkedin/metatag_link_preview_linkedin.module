@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function metatag_link_preview_linkedin_theme($existing, $type, $theme, $path) {
+  return [
+    'linkedin_card' => [
+      'variables' => [
+        'title' => NULL,
+        'link' => NULL,
+        'image' => NULL,
+      ],
+    ],
+  ];
+}

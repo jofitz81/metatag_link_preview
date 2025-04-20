@@ -1,0 +1,26 @@
+.linkedin {
+  background-color: #f3f6f8;
+  border: 1px solid #e6e9ec;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  max-width: 552px;
+}
+
+.linkedin-title {
+  color: #000000e6;
+  font-weight: bold;
+  padding: 8px 16px 0;
+}
+
+.linkedin-link {
+  color: #606770;
+  padding: 0 16px 8px;
+}
+
+.linkedin-image {
+  aspect-ratio: 552 / 288;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border: 1px solid #dadde1;
+}
