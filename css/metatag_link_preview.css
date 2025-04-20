@@ -1,0 +1,35 @@
+.search-engine {
+  max-width: 600px;
+}
+
+.search-engine-title {
+  color: #1a0dab;
+  cursor: pointer;
+  font-size:18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-engine-title:hover {
+  text-decoration: underline;
+}
+
+.search-engine-link {
+  color: #006621;
+  font-size: 14px;
+}
+
+.search-engine-link-arrow {
+  border-color: #006621 transparent;
+  border-style: solid;
+  border-width: 5px 4px 0;
+  font-size: 4px;
+  margin-left: 5px;
+  vertical-align: bottom;
+}
+
+.search-engine-description {
+  color: #545454;
+  font-size: 13px;
+}
