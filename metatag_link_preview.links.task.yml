@@ -3,3 +3,8 @@ metatag_link_preview.preview:
   route_name: metatag_link_preview.preview
   base_route: entity.node.canonical
   weight: 32
+metatag_link_preview.preview_taxonomy_term:
+  title: Link Preview
+  route_name: metatag_link_preview.preview_taxonomy_term
+  base_route: entity.taxonomy_term.canonical
+  weight: 32
