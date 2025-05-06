@@ -56,6 +56,15 @@ abstract class MetatagLinkPreviewBaseController extends ControllerBase {
     }
 
     $meta_tags = $this->metatagManager->tagsFromEntityWithDefaults($entity);
+
+    if ($this->_entityIsFrontPage($entity)) {
+      $front_meta_tags = $this->entityTypeManager()
+        ->getStorage('metatag_defaults')
+        ->load('front')
+        ->get('tags');
+      $meta_tags = array_merge($meta_tags, $front_meta_tags);
+    }
+
     return $this->_replaceTokens($meta_tags, $entity);
   }
 
@@ -74,6 +83,17 @@ abstract class MetatagLinkPreviewBaseController extends ControllerBase {
       $meta_tag = $this->tokenService->replace($meta_tag, $data);
     }
     return $meta_tags;
+  }
+
+  public function _entityIsFrontPage(ContentEntityInterface $entity) {
+    $is_front_page = FALSE;
+    $url = $entity->toUrl();
+    if ($url->getRouteName()) {
+      $entity_path = '/' . $url->getInternalPath();
+      $front_page_path = $this->config('system.site')->get('page.front');
+      $is_front_page = $entity_path === $front_page_path;
+    }
+    return $is_front_page;
   }
 
 }
