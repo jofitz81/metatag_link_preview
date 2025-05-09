@@ -44,6 +44,7 @@ abstract class MetatagLinkPreviewBaseController extends ControllerBase {
 
     $build['content'] = [
       '#theme' => 'preview_container',
+      '#meta_tag_values' => $this->_getMetaTagValues($meta_tags),
       '#preview_cards' => $preview_cards,
     ];
 
@@ -94,6 +95,52 @@ abstract class MetatagLinkPreviewBaseController extends ControllerBase {
       $is_front_page = $entity_path === $front_page_path;
     }
     return $is_front_page;
+  }
+
+  protected function _getMetaTagValues(bool|array $meta_tags): array {
+    $grouped_tags = [];
+    $basic_tags = ['title', 'description', 'canonical'];
+    foreach ($meta_tags as $key => $value) {
+      [$tag_type] = explode('_', $key);
+      $text = "<p><strong>$key</strong>: $value</p>";
+      switch ($tag_type) {
+        case 'og':
+        case 'schema':
+        case 'twitter':
+          $grouped_tags[$tag_type][] = $text;
+          break;
+
+        default:
+          if (in_array($tag_type, $basic_tags)) {
+            $grouped_tags['basic'][] = $text;
+          }
+          else {
+            $grouped_tags['other'][] = $text;
+          }
+      }
+    }
+    $tag_type_order = [
+      'basic',
+      'og',
+      'twitter',
+      'other',
+      'schema',
+    ];
+    $grouped_tags = array_replace(array_flip($tag_type_order), $grouped_tags);
+    $meta_tag_values = [];
+    foreach ($grouped_tags as $tag_type => $tags) {
+      $meta_tag_group = [
+        '#type' => 'details',
+        '#title' => $tag_type,
+        '#open' => FALSE,
+        'grouped_tags' => ['#markup' => ''],
+      ];
+      foreach ($tags as $tag_name => $tag_values) {
+        $meta_tag_group['grouped_tags']['#markup'] .= $tag_values;
+      }
+      $meta_tag_values[] = $meta_tag_group;
+    }
+    return $meta_tag_values;
   }
 
 }
