@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function metatag_link_preview_twitter_theme($existing, $type, $theme, $path) {
+  return [
+    'twitter_card' => [
+      'variables' => [
+        'title' => NULL,
+        'image' => NULL,
+      ],
+    ],
+  ];
+}

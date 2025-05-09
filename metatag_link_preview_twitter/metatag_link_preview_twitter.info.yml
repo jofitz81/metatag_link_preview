@@ -1,0 +1,9 @@
+name: 'Metatag Link Preview - X'
+type: module
+description: 'Provides an indication of an entity''s link preview when it is share on X (formerly Twitter)'
+package: SEO
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:metatag
+  - drupal:metatag_link_preview
+  - drupal:metatag_twitter_cards

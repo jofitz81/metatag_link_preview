@@ -1,0 +1,28 @@
+.twitter {
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid #e1e8ed;
+  overflow: hidden;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  max-width: 516px;
+}
+
+.twitter-title {
+  padding: 8px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  bottom: 4px;
+  left: 2%;
+  width: 96%;
+  box-sizing: border-box;
+}
+
+.twitter-image {
+  aspect-ratio: 516 / 271;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border: 1px solid #dadde1;
+}
