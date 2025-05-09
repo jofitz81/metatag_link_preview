@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\metatag_link_preview_linkedin\Plugin\LinkPreview;
+namespace Drupal\metatag_link_preview_open_graph\Plugin\LinkPreview;
 
 use Drupal\metatag_link_preview\Annotation\LinkPreview;
 use Drupal\metatag_link_preview\LinkPreviewPluginBase;
@@ -27,7 +27,7 @@ class Linkedin extends LinkPreviewPluginBase {
       '#title' => $meta_tags['title'],
       '#link' => $meta_tags['canonical_url'],
       '#image' => $meta_tags['og_image'],
-      '#attached' => ['library' => ['metatag_link_preview_linkedin/metatag_link_preview_linkedin']],
+      '#attached' => ['library' => ['metatag_link_preview_open_graph/metatag_link_preview_open_graph']],
     ];
   }
 

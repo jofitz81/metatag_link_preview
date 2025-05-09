@@ -3,7 +3,7 @@
 /**
  * Implements hook_theme().
  */
-function metatag_link_preview_linkedin_theme($existing, $type, $theme, $path) {
+function metatag_link_preview_open_graph_theme($existing, $type, $theme, $path) {
   return [
     'linkedin_card' => [
       'variables' => [

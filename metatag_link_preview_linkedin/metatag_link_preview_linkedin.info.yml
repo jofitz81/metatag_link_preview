@@ -1,8 +1,0 @@
-name: 'Metatag Link Preview - LinkedIn'
-type: module
-description: 'Provides an indication of an entity''s link preview when it is share on LinkedIn'
-package: SEO
-core_version_requirement: ^10 || ^11
-dependencies:
-  - drupal:metatag
-  - drupal:metatag_open_graph
