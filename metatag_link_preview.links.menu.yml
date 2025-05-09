@@ -1,0 +1,5 @@
+metatag_link_preview.settings:
+  title: Link preview settings
+  description: Configure Metatag Link Preview module
+  route_name: metatag_link_preview.settings
+  parent: entity.metatag_defaults.collection

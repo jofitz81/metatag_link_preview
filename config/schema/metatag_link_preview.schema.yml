@@ -1,0 +1,11 @@
+# Schema for the configuration files of the Metatag Link Preview module.
+metatag_link_preview.settings:
+  type: config_object
+  label: 'Metatag Link Preview settings'
+  mapping:
+    enabled_previews:
+      type: sequence
+      label: 'Enabled link previews'
+      sequence:
+        type: boolean
+        label: 'Enabled'

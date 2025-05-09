@@ -38,8 +38,12 @@ abstract class MetatagLinkPreviewBaseController extends ControllerBase {
     $meta_tags = $this->_getMetaTags($entity);
 
     foreach ($this->linkPreviewManager->getDefinitions() as $plugin_id => $definition) {
-      $link_preview = $this->linkPreviewManager->createInstance($plugin_id);
-      $preview_cards[] = $link_preview->card($meta_tags);
+      $setting = $this->config('metatag_link_preview.settings')->get($plugin_id);
+      $disabled = $setting === 0;
+      if (!$disabled) {
+        $link_preview = $this->linkPreviewManager->createInstance($plugin_id);
+        $preview_cards[] = $link_preview->card($meta_tags);
+      }
     }
 
     $build['content'] = [

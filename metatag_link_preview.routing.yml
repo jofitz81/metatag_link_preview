@@ -10,6 +10,7 @@ metatag_link_preview.preview:
       node:
         type: entity:node
     _admin_route: TRUE
+
 metatag_link_preview.preview_taxonomy_term:
   path: '/taxonomy/term/{taxonomy_term}/link-preview'
   defaults:
@@ -21,4 +22,14 @@ metatag_link_preview.preview_taxonomy_term:
     parameters:
       taxonomy_term:
         type: entity:taxonomy_term
+    _admin_route: TRUE
+
+metatag_link_preview.settings:
+  path: '/admin/config/search/metatag/link-preview'
+  defaults:
+    _title: 'Configure the Metatag Link Preview module'
+    _form: 'Drupal\metatag_link_preview\Form\SettingsForm'
+  requirements:
+    _permission: 'administer meta tags'
+  options:
     _admin_route: TRUE

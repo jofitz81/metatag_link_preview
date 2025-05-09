@@ -1,4 +1,10 @@
+<h3>Previews</h3>
+<p>Click <a href="/admin/config/search/metatag/link-preview">Link Preview Settings</a> to set which previews are enabled.</p>
+{% if preview_cards %}
+  {{ preview_cards }}
+{% else %}
+  <p><em>All Link Previews have been disabled</em></p>
+{% endif %}
+
 <h3>Meta tag values</h3>
 {{ meta_tag_values }}
-<h3>Previews</h3>
-{{ preview_cards }}

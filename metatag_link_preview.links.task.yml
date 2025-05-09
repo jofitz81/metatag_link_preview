@@ -8,3 +8,8 @@ metatag_link_preview.preview_taxonomy_term:
   route_name: metatag_link_preview.preview_taxonomy_term
   base_route: entity.taxonomy_term.canonical
   weight: 32
+metatag_link_preview.settings:
+  route_name: metatag_link_preview.settings
+  base_route: entity.metatag_defaults.collection
+  title: Link preview settings
+  weight: 18
