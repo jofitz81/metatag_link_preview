@@ -5,4 +5,5 @@ package: SEO
 core_version_requirement: ^10 || ^11
 dependencies:
   - drupal:metatag
+  - drupal:metatag_link_preview
   - drupal:metatag_open_graph
