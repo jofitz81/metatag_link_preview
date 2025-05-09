@@ -5,6 +5,14 @@
  */
 function metatag_link_preview_open_graph_theme($existing, $type, $theme, $path) {
   return [
+    'facebook_card' => [
+      'variables' => [
+        'title' => NULL,
+        'link' => NULL,
+        'image' => NULL,
+        'description' => NULL,
+      ],
+    ],
     'linkedin_card' => [
       'variables' => [
         'title' => NULL,
