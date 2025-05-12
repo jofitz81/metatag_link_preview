@@ -25,9 +25,9 @@ class Facebook extends LinkPreviewPluginBase {
   public function card(array $meta_tags): array {
     return [
       '#theme' => 'facebook_card',
-      '#title' => $meta_tags['title'],
-      '#description' => strip_tags(Html::decodeEntities($meta_tags['description'])),
-      '#link' => $meta_tags['canonical_url'],
+      '#title' => $meta_tags['og_title'],
+      '#description' => strip_tags(Html::decodeEntities($meta_tags['og_description'])),
+      '#link' => $meta_tags['og_url'],
       '#image' => $meta_tags['og_image'],
       '#attached' => ['library' => ['metatag_link_preview_open_graph/metatag_link_preview_open_graph']],
     ];

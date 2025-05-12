@@ -24,8 +24,8 @@ class Linkedin extends LinkPreviewPluginBase {
   public function card(array $meta_tags): array {
     return [
       '#theme' => 'linkedin_card',
-      '#title' => $meta_tags['title'],
-      '#link' => $meta_tags['canonical_url'],
+      '#title' => $meta_tags['og_title'],
+      '#link' => $meta_tags['og_url'],
       '#image' => $meta_tags['og_image'],
       '#attached' => ['library' => ['metatag_link_preview_open_graph/metatag_link_preview_open_graph']],
     ];

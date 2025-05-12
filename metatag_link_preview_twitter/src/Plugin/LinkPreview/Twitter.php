@@ -25,8 +25,8 @@ class Twitter extends LinkPreviewPluginBase {
   public function card(array $meta_tags): array {
     return [
       '#theme' => 'twitter_card',
-      '#title' => $meta_tags['title'],
-      '#image' => $meta_tags['og_image'],
+      '#title' => $meta_tags['twitter_cards_title'],
+      '#image' => $meta_tags['twitter_cards_image'],
       '#attached' => ['library' => ['metatag_link_preview_twitter/metatag_link_preview_twitter']],
     ];
   }
