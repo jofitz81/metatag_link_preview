@@ -7,5 +7,5 @@ metatag_link_preview.settings:
       type: sequence
       label: 'Enabled link previews'
       sequence:
-        type: boolean
+        type: integer
         label: 'Enabled'
