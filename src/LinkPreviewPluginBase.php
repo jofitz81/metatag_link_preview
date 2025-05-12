@@ -11,4 +11,8 @@ use Drupal\Component\Plugin\PluginBase;
  */
 abstract class LinkPreviewPluginBase extends PluginBase implements LinkPreviewInterface {
 
+  public function processMetaTags(array $meta_tags): array {
+    return $meta_tags;
+  }
+
 }

@@ -14,4 +14,9 @@ interface LinkPreviewInterface {
    */
   public function card(array $meta_tags): array;
 
+  /**
+   * Processes meta tags to be displayed on the Link Preview card.
+   */
+  public function processMetaTags(array $meta_tags): array;
+
 }
